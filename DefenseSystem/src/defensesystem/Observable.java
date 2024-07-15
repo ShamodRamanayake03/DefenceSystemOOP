@@ -13,6 +13,7 @@ interface Observable {
     void removeObserver(Observer observer);
     void notifyObservers(boolean isChecked);
     void notifyObservers(String message);
+    void notifyObserverState(Strength state);
     void getMessage(String message);
 }
 

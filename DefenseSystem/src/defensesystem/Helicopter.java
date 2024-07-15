@@ -8,13 +8,15 @@ package defensesystem;
  *
  * @author Shamod
  */
-public class Helicopter extends SuperDefence implements Observer{
-    
+public class Helicopter extends SuperDefence implements Observer {
+
     /**
      * Creates new form Helicopter
      */
-    private MainController controller;
-    public Helicopter(MainController controller) {
+    private boolean isCheckedPosition = false;
+    private Observable controller;
+
+    public Helicopter(Observable controller) {
         this.controller = controller;
         initComponents();
     }
@@ -30,10 +32,10 @@ public class Helicopter extends SuperDefence implements Observer{
 
         jLabel2 = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        jCheckBox = new javax.swing.JCheckBox();
-        jButtonMissile = new javax.swing.JButton();
-        jButtonLaser = new javax.swing.JButton();
-        jButtonShoot = new javax.swing.JButton();
+        chkPosition = new javax.swing.JCheckBox();
+        btnMissile = new javax.swing.JButton();
+        btnLaser = new javax.swing.JButton();
+        btnShoot = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaHelicopter = new javax.swing.JTextArea();
@@ -51,6 +53,7 @@ public class Helicopter extends SuperDefence implements Observer{
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Helicopter");
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        setResizable(false);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Area Status");
@@ -58,31 +61,34 @@ public class Helicopter extends SuperDefence implements Observer{
         lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStatus.setText("Area Not Cleared");
 
-        jCheckBox.setText("   Position");
-        jCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        chkPosition.setText("   Position");
+        chkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxActionPerformed(evt);
+                chkPositionActionPerformed(evt);
             }
         });
 
-        jButtonMissile.setText("Missile Operation");
-        jButtonMissile.addActionListener(new java.awt.event.ActionListener() {
+        btnMissile.setText("Missile Operation");
+        btnMissile.setEnabled(false);
+        btnMissile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMissileActionPerformed(evt);
+                btnMissileActionPerformed(evt);
             }
         });
 
-        jButtonLaser.setText("Laser Operation");
-        jButtonLaser.addActionListener(new java.awt.event.ActionListener() {
+        btnLaser.setText("Laser Operation");
+        btnLaser.setEnabled(false);
+        btnLaser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLaserActionPerformed(evt);
+                btnLaserActionPerformed(evt);
             }
         });
 
-        jButtonShoot.setText("Shoot");
-        jButtonShoot.addActionListener(new java.awt.event.ActionListener() {
+        btnShoot.setText("Shoot");
+        btnShoot.setEnabled(false);
+        btnShoot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonShootActionPerformed(evt);
+                btnShootActionPerformed(evt);
             }
         });
 
@@ -122,6 +128,10 @@ public class Helicopter extends SuperDefence implements Observer{
 
         jLabel8.setText("Energy");
 
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2000, 100));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,118 +139,123 @@ public class Helicopter extends SuperDefence implements Observer{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonShoot, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnShoot, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonMissile, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMissile, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonLaser, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLaser, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSendHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSendHelicopter))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSendHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSendHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jSliderHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSliderHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(chkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonMissile, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonLaser, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonShoot, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnMissile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnShoot, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLaser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(1, 1, 1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(5, 5, 5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
-                        .addGap(2, 2, 2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSendHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSendHelicopter)))
-                    .addComponent(jSliderHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSliderHelicopter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxActionPerformed
+    private void chkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPositionActionPerformed
+        if (chkPosition.isSelected()) {
+            isCheckedPosition = true;
+        }
+    }//GEN-LAST:event_chkPositionActionPerformed
 
-    private void jButtonMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMissileActionPerformed
+    private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMissileActionPerformed
+    }//GEN-LAST:event_btnMissileActionPerformed
 
-    private void jButtonLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLaserActionPerformed
+    private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonLaserActionPerformed
+    }//GEN-LAST:event_btnLaserActionPerformed
 
-    private void jButtonShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShootActionPerformed
+    private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonShootActionPerformed
+    }//GEN-LAST:event_btnShootActionPerformed
 
     private void txtSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSendHelicopterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSendHelicopterActionPerformed
 
     private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
-        if (!txtSendHelicopter.getText().isEmpty()) { 
-            message = "Hel : "+txtSendHelicopter.getText()+"\n";
+        if (!txtSendHelicopter.getText().isEmpty()) {
+            message = "Hel : " + txtSendHelicopter.getText() + "\n";
             txtSendHelicopter.setText(" ");
             controller.getMessage(message);
-           
+
         }
     }//GEN-LAST:event_btnSendHelicopterActionPerformed
-     
+
     /**
      * @param args the command line arguments
      */
@@ -271,17 +286,17 @@ public class Helicopter extends SuperDefence implements Observer{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-             //   new Helicopter().setVisible(true);
+                //new Helicopter(controller).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaser;
+    private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnSendHelicopter;
-    private javax.swing.JButton jButtonLaser;
-    private javax.swing.JButton jButtonMissile;
-    private javax.swing.JButton jButtonShoot;
-    private javax.swing.JCheckBox jCheckBox;
+    private javax.swing.JButton btnShoot;
+    private javax.swing.JCheckBox chkPosition;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,13 +330,41 @@ public class Helicopter extends SuperDefence implements Observer{
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-   
+    @Override
+    public void updateState(Enum state) {
+        if (isCheckedPosition == true) {
+            if (state == Strength.NONE) {
 
-    
+                btnShoot.setEnabled(false);
+                btnMissile.setEnabled(false);
+                btnLaser.setEnabled(false);
+            } else if (state == Strength.LOW) {
+                btnShoot.setEnabled(true);
+                btnMissile.setEnabled(false);
+                btnLaser.setEnabled(false);
+            } else if (state == Strength.MEDIUM) {
 
-    
-   
+                btnMissile.setEnabled(false);
+                btnLaser.setEnabled(false);
+            } else if (state == Strength.HIGH) {
 
-  
-   
+                btnLaser.setEnabled(false);
+                btnMissile.setEnabled(true);
+            } else if (state == Strength.STRONG) {
+
+                btnLaser.setEnabled(true);
+            } else if (state == Strength.CLOSED) {
+                btnShoot.setEnabled(true);
+                btnMissile.setEnabled(true);
+                btnLaser.setEnabled(true);
+            }
+        } else {
+            btnShoot.setEnabled(false);
+            btnMissile.setEnabled(false);
+            btnLaser.setEnabled(false);
+
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

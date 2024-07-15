@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Helicopter"/>
     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
       <Font name="Arial" size="18" style="0"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -30,48 +31,47 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="147" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblStatus" min="-2" pref="157" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jCheckBox" min="-2" pref="197" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="jLabel4" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButtonShoot" min="-2" pref="168" max="-2" attributes="0"/>
+                      <Component id="btnShoot" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonMissile" min="-2" pref="147" max="-2" attributes="0"/>
+                      <Component id="btnMissile" min="-2" pref="141" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonLaser" min="-2" pref="202" max="-2" attributes="0"/>
+                      <Component id="btnLaser" min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel3" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="txtSendHelicopter" min="-2" pref="301" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnSendHelicopter" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtSendHelicopter" min="-2" pref="333" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="357" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSendHelicopter" min="-2" pref="94" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel5" alignment="1" pref="103" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jSpinner1" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="jSpinner2" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" pref="97" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblStatus" min="-2" pref="157" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="chkPosition" min="-2" pref="112" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSpinner1" min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                          <Component id="jSpinner2" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="jSliderHelicopter" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jSliderHelicopter" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel8" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -80,54 +80,61 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblStatus" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jCheckBox" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblStatus" alignment="3" max="32767" attributes="0"/>
+                              <Component id="chkPosition" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonMissile" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jButtonLaser" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jButtonShoot" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="btnMissile" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btnShoot" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btnLaser" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSpinner2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtSendHelicopter" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnSendHelicopter" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jSliderHelicopter" min="-2" pref="382" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jSliderHelicopter" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,36 +152,39 @@
         <Property name="text" type="java.lang.String" value="Area Not Cleared"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox">
+    <Component class="javax.swing.JCheckBox" name="chkPosition">
       <Properties>
         <Property name="text" type="java.lang.String" value="   Position"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkPositionActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonMissile">
+    <Component class="javax.swing.JButton" name="btnMissile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Missile Operation"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMissileActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMissileActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonLaser">
+    <Component class="javax.swing.JButton" name="btnLaser">
       <Properties>
         <Property name="text" type="java.lang.String" value="Laser Operation"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLaserActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaserActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonShoot">
+    <Component class="javax.swing.JButton" name="btnShoot">
       <Properties>
         <Property name="text" type="java.lang.String" value="Shoot"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonShootActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShootActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -246,8 +256,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinner1">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" maximum="30" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinner2">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" maximum="2000" minimum="0" numberType="java.lang.Integer" stepSize="100" type="number"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

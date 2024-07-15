@@ -11,5 +11,6 @@ package defensesystem;
 interface Observer {
     void update(boolean isChecked);
     void updateMsg(String message);
+    void updateState(Enum state);
     
 }

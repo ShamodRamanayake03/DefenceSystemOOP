@@ -30,6 +30,7 @@ public class Starter {
         maincontroller1.addObserver(submarine);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                maincontroller1.setVisible(true);
                 helicopter.setVisible(true);
                 submarine.setVisible(true);
                 tank.setVisible(true);
