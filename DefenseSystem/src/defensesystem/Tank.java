@@ -13,7 +13,9 @@ public class Tank extends SuperDefence implements Observer{
     /**
      * Creates new form Tank
      */
-    public Tank() {
+    private MainController controller;
+    public Tank(MainController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -37,7 +39,7 @@ public class Tank extends SuperDefence implements Observer{
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaTank = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        txtTank = new javax.swing.JTextField();
+        txtSendTank = new javax.swing.JTextField();
         btnSendTank = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -99,9 +101,9 @@ public class Tank extends SuperDefence implements Observer{
 
         jLabel3.setText("Log");
 
-        txtTank.addActionListener(new java.awt.event.ActionListener() {
+        txtSendTank.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTankActionPerformed(evt);
+                txtSendTankActionPerformed(evt);
             }
         });
 
@@ -154,7 +156,7 @@ public class Tank extends SuperDefence implements Observer{
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(txtTank, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtSendTank, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnSendTank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +232,7 @@ public class Tank extends SuperDefence implements Observer{
                         .addComponent(jLabel4)
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSendTank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSendTank)))
                     .addComponent(jSliderHelicopter, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -259,16 +261,15 @@ public class Tank extends SuperDefence implements Observer{
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxActionPerformed
 
-    private void txtTankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTankActionPerformed
+    private void txtSendTankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSendTankActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTankActionPerformed
+    }//GEN-LAST:event_txtSendTankActionPerformed
 
     private void btnSendTankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendTankActionPerformed
-        if (!txtAreaTank.getText().isEmpty()) { 
-            message = "Tnk : "+txtAreaTank.getText()+"\n";
-            txtAreaTank.setText(" ");
-            //updateMsgtoMain(message);
-            //
+        if (!txtSendTank.getText().isEmpty()) { 
+            message = "Tnk : "+txtSendTank.getText()+"\n";
+            txtSendTank.setText(" ");
+            controller.getMessage(message);
         }
     }//GEN-LAST:event_btnSendTankActionPerformed
 
@@ -310,7 +311,7 @@ public class Tank extends SuperDefence implements Observer{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tank().setVisible(true);
+                //new Tank().setVisible(true);
             }
         });
     }
@@ -335,7 +336,7 @@ public class Tank extends SuperDefence implements Observer{
     private javax.swing.JSlider jSliderHelicopter;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTextArea txtAreaTank;
-    private javax.swing.JTextField txtTank;
+    private javax.swing.JTextField txtSendTank;
     // End of variables declaration//GEN-END:variables
 
     @Override

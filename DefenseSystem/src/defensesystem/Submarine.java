@@ -13,7 +13,9 @@ public class Submarine extends SuperDefence implements Observer{
     /**
      * Creates new form Submarine
      */
-    public Submarine() {
+    private MainController controller;
+    public Submarine(MainController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -283,7 +285,12 @@ public class Submarine extends SuperDefence implements Observer{
     }//GEN-LAST:event_txtSendSubmarineActionPerformed
 
     private void btnSendSubmarineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendSubmarineActionPerformed
-        // TODO add your handling code here:
+        if (!txtSendSubmarine.getText().isEmpty()) { 
+            message = "Sub : "+txtSendSubmarine.getText()+"\n";
+            txtSendSubmarine.setText(" ");
+            controller.getMessage(message);
+           
+        }
     }//GEN-LAST:event_btnSendSubmarineActionPerformed
 
     private void jComboBoxSoldiersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSoldiersActionPerformed
@@ -324,7 +331,7 @@ public class Submarine extends SuperDefence implements Observer{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Submarine().setVisible(true);
+                //new Submarine().setVisible(true);
             }
         });
     }

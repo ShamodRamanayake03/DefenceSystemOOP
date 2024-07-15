@@ -9,11 +9,13 @@ package defensesystem;
  * @author Shamod
  */
 public class Helicopter extends SuperDefence implements Observer{
-
+    
     /**
      * Creates new form Helicopter
      */
-    public Helicopter() {
+    private MainController controller;
+    public Helicopter(MainController controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -231,11 +233,11 @@ public class Helicopter extends SuperDefence implements Observer{
     }//GEN-LAST:event_txtSendHelicopterActionPerformed
 
     private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
-        if (!txtAreaHelicopter.getText().isEmpty()) { 
-            message = "Hel : "+txtAreaHelicopter.getText()+"\n";
-            txtAreaHelicopter.setText(" ");
-            //updateMsgtoMain(message);
-            //
+        if (!txtSendHelicopter.getText().isEmpty()) { 
+            message = "Hel : "+txtSendHelicopter.getText()+"\n";
+            txtSendHelicopter.setText(" ");
+            controller.getMessage(message);
+           
         }
     }//GEN-LAST:event_btnSendHelicopterActionPerformed
      
@@ -269,7 +271,7 @@ public class Helicopter extends SuperDefence implements Observer{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Helicopter().setVisible(true);
+             //   new Helicopter().setVisible(true);
             }
         });
     }
@@ -312,6 +314,8 @@ public class Helicopter extends SuperDefence implements Observer{
         txtAreaHelicopter.append(message);
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+   
 
     
 

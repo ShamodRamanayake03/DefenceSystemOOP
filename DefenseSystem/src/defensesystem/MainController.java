@@ -273,6 +273,13 @@ public class MainController extends javax.swing.JFrame implements Observable{
             observer.updateMsg(message);
         }
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+    @Override
+    public void getMessage(String message) {
+        txtAreaLog.append(message);
+        System.out.println("Received message: " + message);
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
   
     }
 

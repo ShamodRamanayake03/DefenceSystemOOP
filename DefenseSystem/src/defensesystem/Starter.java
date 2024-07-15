@@ -16,9 +16,9 @@ public class Starter {
         
         MainController maincontroller1 = new MainController();
         
-        Helicopter helicopter = new Helicopter();
-        Submarine submarine = new Submarine();
-        Tank tank = new Tank();
+        Helicopter helicopter = new Helicopter(maincontroller1);
+        Submarine submarine = new Submarine(maincontroller1);
+        Tank tank = new Tank(maincontroller1);
        
         
         defenceUnits.add(helicopter);

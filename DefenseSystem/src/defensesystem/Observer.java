@@ -11,5 +11,5 @@ package defensesystem;
 interface Observer {
     void update(boolean isChecked);
     void updateMsg(String message);
-    //void updateMsgToMain(String message);
+    
 }

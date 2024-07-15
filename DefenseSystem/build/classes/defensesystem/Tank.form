@@ -33,7 +33,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtTank" min="-2" pref="333" max="-2" attributes="0"/>
+                                      <Component id="txtSendTank" min="-2" pref="333" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnSendTank" max="32767" attributes="0"/>
                                   </Group>
@@ -128,7 +128,7 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtTank" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSendTank" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnSendTank" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -217,9 +217,9 @@
         <Property name="text" type="java.lang.String" value="Log"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTank">
+    <Component class="javax.swing.JTextField" name="txtSendTank">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTankActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSendTankActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSendTank">
